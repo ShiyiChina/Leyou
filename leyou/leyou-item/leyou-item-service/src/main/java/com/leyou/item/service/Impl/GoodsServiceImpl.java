@@ -42,6 +42,11 @@ public class GoodsServiceImpl implements GoodsService {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
+    /**
+     * AMQP消息队列
+     * @param id
+     * @param type
+     */
     private void sendMessage(Long id, String type){
         // 发送消息
         try {
@@ -221,5 +226,11 @@ public class GoodsServiceImpl implements GoodsService {
     public void updataSaleable(Spu spu) {
         spu.setSaleable(!spu.getSaleable());
         spuMapper.updateByPrimaryKeySelective(spu);
+    }
+
+    @Override
+    public Spu querySpuById(Long id) {
+        Spu spu = spuMapper.selectByPrimaryKey(id);
+        return spu;
     }
 }

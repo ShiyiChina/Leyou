@@ -109,6 +109,12 @@ public class GoodsController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<Spu> querySpuById(@PathVariable("id") Long id){
+        Spu spu = goodsService.querySpuById(id);
+        return ResponseEntity.ok(spu);
+    }
+
 
 
 }
